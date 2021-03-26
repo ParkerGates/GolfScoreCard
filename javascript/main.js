@@ -8,7 +8,7 @@ let par = [];
 let handicap = [];
 
 let players = [];
-let playersData = [];
+let playerData = [];
 
 let teeBoxIndex;
 
@@ -32,11 +32,12 @@ function capFirstLetter(word) {
     return capital + word;
 }
 
-function arrangeForTable(){
-    holes.unshift("Hole"); holes.push("Out"); holes.push("In"); holes.push("Total");
-    yardage.unshift("Yardage"); yardage.push("Out"); yardage.push("In"); yardage.push("Total");
-    par.unshift("Par"); par.push("Out"); par.push("In"); par.push("Total");
-    console.log(playersData[0].name);
+function playerDataSetUp(){
+    playerData.forEach((index) => {
+        for (let h = 0; h < holes.length; h++) {
+            index.scores.push([]);
+        }
+    });
 }
 
 
@@ -111,7 +112,7 @@ $('#createGame').on("click","#play", () => {
             $(".playerInput").each((index, element) => {
                 if ($(element).val() != "") {
                     players.push($(element).val());
-                    playersData.push({name: $(element).val(), scores: []});
+                    playerData.push({name: $(element).val(), scores: []});
                 }
             });
 
@@ -138,6 +139,15 @@ $('#createGame').on("click","#play", () => {
                             handicap.push(current.hcp);
                         }
                         $('#createGame').remove();
+
+                        playerDataSetUp();
+
+
+
+
+
+
+
                         buildScoreCard();
                     });
             }

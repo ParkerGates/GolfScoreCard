@@ -15,5 +15,4 @@ fetch("https://golf-courses-api.herokuapp.com/courses")
             coursePositionKey[data.courses[i].name] = count;
             count++;
         }
-
     });

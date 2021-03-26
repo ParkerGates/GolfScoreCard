@@ -191,4 +191,9 @@ main #built {
 body {
   font-family: 'Trebuchet MS', sans-serif;
 }
+
+table, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 /*# sourceMappingURL=style.css.map */
