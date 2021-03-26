@@ -1,0 +1,100 @@
+//POST-PAGES===================================================================
+function createGame(){
+    $('#createGame').append(`
+        <h1>Set Up</h1>
+
+        <label for="courseSelect" class="block">Select Course</label>
+        <select name="courseSelect" id="courseSelect">
+            <option value="" disabled selected hidden>Course...</option>
+        </select>
+        <hr>
+
+        <label for="teeBoxSelect" class="block">Select Tee Box</label>
+        <select name="teeBoxSelect" id="teeBoxSelect">
+            <option value="" disabled selected hidden>Tee Box...</option>
+            <option value="0">Pro</option>
+            <option value="1">Champion</option>
+            <option value="2">Men</option>
+            <option value="3">Women</option>
+        </select>
+        <hr>
+
+        <label for="holeSelect" class="block">Select Number of Holes</label>
+        <select name="holeSelect" id="holeSelect">
+            <option value="" disabled selected hidden>Number of Holes...</option>
+            <option value="fNine">First 9</option>
+            <option value="bNine">Last 9</option>
+            <option value="Eighteen">All 18</option>
+        </select>
+        <hr>
+
+        <div class="playerSetUp">
+            <label class="block">Enter Players <sup style="color:#043827;font-size: 12px;">(Up to 4)</sup></label>
+            <div class="playerName">
+                <input class="playerInput" type="text" placeholder="Player Name...">
+                <span class="playerDelete">&#10008;</span>
+            </div>
+            <span id="addPlayer">&#10010;</span>
+        </div>
+
+        <div class="bottom">
+            <hr>
+            <input id="play" type="button" value="Play!">
+        </div>`
+        );
+}
+
+
+//POST-POP-UP==================================================================
+function popUp(message) {
+    $('nav').css("filter","blur(2px)");
+    $('main').css("filter","blur(2px)");
+    $('body').append(`
+        <div id="popUp">
+            <div class="popUpBack"></div>
+            <div class="popUpMessage">
+                <div class="message">
+                    <p>${message}</p>
+                    <button onclick="closePopUp()">Ok</button>
+                </div>
+            </div>
+        </div>
+    `);
+}
+
+function closePopUp(){
+    $('#popUp').remove();
+    $('nav').css("filter","none");
+    $('main').css("filter","none");
+}
+
+
+//POST-BUILT===================================================================
+function buildScoreCard(){
+    
+    arrangeForTable();
+    
+    
+    for (let rows = 0; rows < tableRows; rows++) {
+        console.log(rows);
+
+
+        for (let items = 0; items < holes.length; items++) {
+
+
+        }
+
+
+
+    }
+
+    $('#built').append(`
+        <div>&#128157;</div>
+        <table>
+
+        </table>
+    
+    `);
+
+
+}

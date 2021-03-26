@@ -1,0 +1,194 @@
+body, div, nav, main {
+  margin: 0px;
+  padding: 0px;
+}
+
+.block {
+  display: block;
+}
+
+nav {
+  padding: 10px 20px;
+  background-color: #043827;
+}
+
+nav .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: white;
+}
+
+main {
+  height: calc(100vh - 65px);
+  background-color: #fffff5;
+  border: 4px double #043827;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 0px 5px #414241;
+          box-shadow: 0px 0px 5px #414241;
+  margin: 8px;
+}
+
+main #createGame {
+  margin-left: 10px;
+}
+
+main #createGame label {
+  font-size: 18px;
+}
+
+main #createGame select {
+  width: calc(100% - 20px);
+  font-size: 15px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+main #createGame hr {
+  position: relative;
+  right: 10px;
+  width: calc(100% - 20px);
+}
+
+main #createGame .playerSetUp {
+  margin-top: 15px;
+}
+
+main #createGame .playerSetUp .playerName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(100% - 20px);
+  margin-top: 5px;
+}
+
+main #createGame .playerSetUp .playerName .playerInput {
+  width: calc(100% - 50px);
+  padding: 5px;
+}
+
+main #createGame .playerSetUp .playerName .playerDelete {
+  display: inline-block;
+  width: 25px;
+  height: 24px;
+  margin-top: 2px;
+  text-align: center;
+  color: white;
+  background-color: #043827;
+}
+
+main #createGame .playerSetUp #addPlayer {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  color: white;
+  margin: 10px 5px 0px;
+  border: 2px solid #043827;
+  border-radius: 25px;
+  background-color: #043827;
+}
+
+main #createGame .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - 25px);
+}
+
+main #createGame .bottom #play {
+  width: 120px;
+  padding: 5px;
+  margin-right: 20px;
+  color: white;
+  background-color: #043827;
+  font-size: 15px;
+  border: 2px solid #043827;
+  border-radius: 15px;
+}
+
+main #createGame .bottom #play:focus {
+  outline: none;
+}
+
+main #built {
+  margin: 15px 10px;
+}
+
+#popUp {
+  z-index: 100;
+  position: fixed;
+  top: 0px;
+}
+
+#popUp .popUpBack {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(54, 54, 54, 0.5);
+}
+
+#popUp .popUpMessage {
+  position: absolute;
+  top: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#popUp .popUpMessage .message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50%;
+  text-align: center;
+  background-color: white;
+  border: 4px double #043827;
+  border-radius: 8px;
+}
+
+#popUp .popUpMessage .message p {
+  text-align: center;
+  margin: 20px;
+}
+
+#popUp .popUpMessage .message button {
+  margin: 10px;
+  padding: 5px;
+}
+
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,191 @@
+@import "base";
+@import "reset";
+
+
+//CLASSES=============================================================================
+.block {
+    display: block;
+}
+
+
+//NAV=================================================================================
+nav {
+    padding: 10px 20px;
+    background-color: $secondary;
+    
+    .nav {
+        display: flex;
+        justify-content: space-between;
+
+        color: white;
+    }
+}
+
+
+//MAIN================================================================================
+main {
+    height: calc(100vh - 65px);
+    background-color: $main;
+
+    border: 4px double $secondary;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px #414241;
+    
+    margin: 8px;
+
+
+//START-UP============================================================================
+    #createGame {
+        margin-left: 10px;
+
+
+        label {
+            font-size: 18px;
+            //margin-top: 15px;
+        }
+        select {
+            width: calc(100% - 20px);
+            
+            font-size: 15px;
+        
+            margin-top: 5px;
+            padding: 5px;
+        }
+        hr {
+            position: relative;
+            right: 10px;
+        
+            width: calc(100% - 20px);
+        }
+
+
+//PLAYER-SETUP========================================================================
+        .playerSetUp {
+            margin-top: 15px;
+            
+            .playerName {
+                display: flex;
+                justify-content: space-between;
+
+                width: calc(100% - 20px);
+                margin-top: 5px;
+
+                .playerInput {
+                    width: calc(100% - 50px);
+                    padding: 5px;
+                
+                }
+                .playerDelete {
+                    display: inline-block;
+                    width: 25px;
+                    height: 24px;
+
+                    margin-top: 2px;
+                    text-align: center;
+
+                    color: white;
+                    background-color: $secondary;
+
+                }
+            }
+            #addPlayer {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                text-align: center;
+
+                color: white;
+                margin: 10px 5px 0px;
+                border: 2px solid $secondary;
+                border-radius: 25px;
+                background-color: $secondary;
+            }
+        }
+        .bottom {
+            display: flex;
+            justify-content: left;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            position: absolute;
+            bottom: 20px;
+
+            width: calc(100% - 25px);
+            #play {
+                width: 120px;
+                padding: 5px;
+                margin-right: 20px;
+
+                color:white;
+                background-color: $secondary;
+
+                font-size: 15px;
+                border: 2px solid $secondary;
+                border-radius: 15px;
+            }
+            #play:focus {outline: none;}
+        }
+    }
+
+
+//GOLF-SCORE-CARD=====================================================================
+
+    #built {
+        margin: 15px 10px;
+
+
+
+    }
+}
+
+
+//POP-UP==============================================================================
+#popUp {
+    z-index: 100;
+    position: fixed;
+    top: 0px;
+
+    .popUpBack {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(54, 54, 54, 0.5);
+
+    }
+    .popUpMessage {
+        position: absolute;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100vw;
+        height: 100vh;
+        .message {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            width: 50%;
+            text-align: center;
+
+            background-color: white;
+            border: 4px double $secondary;
+            border-radius: 8px;
+            
+            p {
+                text-align: center;
+                margin: 20px;
+            }
+            button {
+                margin: 10px;
+                padding: 5px;
+            }
+        }
+    }
+}
+
+
+//GENERAL=============================================================================
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+
+}
