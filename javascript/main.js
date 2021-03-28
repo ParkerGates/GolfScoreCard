@@ -35,9 +35,85 @@ function capFirstLetter(word) {
 function playerDataSetUp(){
     playerData.forEach((index) => {
         for (let h = 0; h < holes.length; h++) {
-            index.scores.push([]);
+            index.scores.push("");
         }
     });
+}
+
+
+function totalParsedForHolesText(item, classKey) {
+    let answer = [];
+    let inTotal = 0;
+    let outTotal = 0;
+    let fullTotal = 0;
+    let counter = 0;
+
+    $(`.${item}`).each((index, object) => {
+        if (holes.length == 18) {  //ALL 18
+            if (counter < 9) { outTotal += Number($(object).text()); }
+            else { inTotal += Number($(object).text()); }
+        }
+        else {
+            if(holes[0] == 1 && holes[8] == 9) { //FIRST 9
+                outTotal += Number($(object).text());
+                inTotal = "";
+            }
+            else {  //LAST 9
+                inTotal += Number($(object).text());
+                outTotal = "";
+            }
+        }
+        counter++
+    });
+
+    fullTotal = Number(inTotal) + Number(outTotal);
+    answer.push(outTotal); answer.push(inTotal); answer.push(fullTotal);
+    
+
+    $(`#${classKey}Out`).text(answer[0]);
+    $(`#${classKey}In`).text(answer[1]);
+    $(`#${classKey}Total`).text(answer[2]);
+ 
+}
+
+function totalParsedForHolesVal(item, classKey) {
+    let answer = [];
+    let inTotal = 0;
+    let outTotal = 0;
+    let fullTotal = 0;
+    let counter = 0;
+
+    $(`.${item}`).each((index, object) => {
+        if (holes.length == 18) {  //ALL 18
+            if (counter < 9) { outTotal += Number($(object).val()); }
+            else { inTotal += Number($(object).val()); }
+        }
+        else {
+            if(holes[0] == 1 && holes[8] == 9) { //FIRST 9
+                outTotal += Number($(object).val());
+                inTotal = "";
+            }
+            else {  //LAST 9
+                inTotal += Number($(object).val());
+                outTotal = "";
+            }
+        }
+        counter++
+    });
+
+    fullTotal = Number(inTotal) + Number(outTotal);
+    answer.push(outTotal); answer.push(inTotal); answer.push(fullTotal);
+    
+    for (let t = 0; t < answer.length; t++){
+        if (answer[t] == 0) {
+            answer[t] = "";
+        }
+    }
+
+    $(`#${classKey}Out`).text(answer[0]);
+    $(`#${classKey}In`).text(answer[1]);
+    $(`#${classKey}Total`).text(answer[2]);
+ 
 }
 
 
@@ -138,16 +214,9 @@ $('#createGame').on("click","#play", () => {
                             par.push(current.par);
                             handicap.push(current.hcp);
                         }
+
                         $('#createGame').remove();
-
                         playerDataSetUp();
-
-
-
-
-
-
-
                         buildScoreCard();
                     });
             }
@@ -168,6 +237,27 @@ $('#createGame').on("click","#play", () => {
 
 
 //GOLF-SCORE-CARD==============================================================
+$('#built').on("keyup", ".data", (event) => {
+    let currentClasses = (event.currentTarget).className.split(" ");
+    let scoreIndex = $(event.currentTarget).parent().attr("value");
+    let dataIndex = players.indexOf(currentClasses[0]);
+    let updatedData = Number($(event.currentTarget).val());
+
+    if(isNaN(updatedData * 5)) {
+        $(event.currentTarget).val(playerData[dataIndex].scores[scoreIndex]);
+    }
+    else {
+        playerData[dataIndex].scores[scoreIndex] = updatedData;
+
+        let totalAdded = 0;
+        $(`.${currentClasses[0]}`).each((index, object) => {
+            totalAdded += Number($(object).val());
+        });
+
+        totalParsedForHolesVal(currentClasses[0], currentClasses[0]);
+
+    }
+});
 
 
 

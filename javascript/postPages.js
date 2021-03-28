@@ -71,45 +71,59 @@ function closePopUp(){
 
 //POST-BUILT===================================================================
 function buildScoreCard(){
+    let count;
 
     //TABLE1
     let col1 = ["Hole","Yardage","Par","Handicap", ...players];
-    let table1 = `<table>`;
+    let table1 = `<table id="table1">`;
     for (let i = 0; i < col1.length; i++) {
         table1 += `<tr><th>${col1[i]}</th></tr>`;
     }
     table1 += `</table>`;
     
+
     //TABLE2
-    let table2 = `<table>`;
+    let table2 = `<table id="table2">`;
 
-    table2 += `<tr value="holes">`;
-    holes.forEach((elem) => { table2 += `<td>${elem}</td>`;});
+    table2 += `<tr>`;
+    holes.forEach((elem) => { table2 += `<td class="holes">${elem}</td>`;});
     table2 += `</tr>`;
 
-    table2 += `<tr value="yardage">`;
-    yardage.forEach((elem) => { table2 += `<td>${elem}</td>`;});
+    table2 += `<tr>`;
+    yardage.forEach((elem) => { table2 += `<td class="yardage">${elem}</td>`;});
     table2 += `</tr>`;
 
-    table2 += `<tr value="par">`;
-    par.forEach((elem) => { table2 += `<td>${elem}</td>`;});
+    table2 += `<tr>`;
+    par.forEach((elem) => { table2 += `<td  class="par">${elem}</td>`;});
     table2 += `</tr>`;
 
-
-    table2 += `<tr value="handicap">`;
-    handicap.forEach((elem) => { table2 += `<td>${elem}</td>`;});
+    table2 += `<tr>`;
+    handicap.forEach((elem) => { table2 += `<td  class="handicap">${elem}</td>`;});
     table2 += `</tr>`;
 
     for(let p = 0; p < playerCount; p++) {
-        table2 += `<tr value="${players[p]}">`;
+        table2 += `<tr>`;
+        count = 0;
         playerData[p].scores.forEach((elem) => {
-            table2 += `<td>${elem}</td>`;
+            table2 += `<td value="${count}"><input type="text" maxlength="2" class="${players[p]} data" value="${elem}"></td>`;
+            count++;
         });
         table2 += `</tr>`;
     }
     table2 += `</table>`;
     
+
     //TABLE3
+    let table3 = `<table id="table3">`;
+    table3 += `<tr><th class="hidden"></th><th>Out</th><th>In</th><th>Total</th></tr>`;
+    table3 += `<tr><th class="hidden">Yrds</th><th id="yOut"></th><th id="yIn"></th><th id="yTotal"></th></tr>`;
+    table3 += `<tr><th class="hidden">Pars</th><th id="pOut"></th><th id="pIn"></th><th id="pTotal"></th></tr>`;
+    table3 += `<tr><th class="hidden">Hcp</th><th id="hOut"></th><th id="hIn"></th><th id="hTotal"></th></tr>`;
+    for(let p = 0; p < playerCount; p++) {
+        table3 += `<tr><th>${players[p]}</th><th id="${players[p]}Out"></th><th id="${players[p]}In"></th><th id="${players[p]}Total"></th></tr>`;
+    }
+
+
 
 
 
@@ -119,9 +133,16 @@ function buildScoreCard(){
     $('#built').append(`
         <h1>Game Start</h1>
         ${table1}
-        ${table2}
+        <div id="mainTable">
+            ${table2}
+        </div>
+        ${table3}
         <hr>
     `);
-
-
+    totalParsedForHolesText("yardage",  "y");
+    totalParsedForHolesText("par",  "p");
+    totalParsedForHolesText("handicap",  "h");
+    players.forEach((element) => {
+        totalParsedForHolesVal(element, element);
+    });
 }

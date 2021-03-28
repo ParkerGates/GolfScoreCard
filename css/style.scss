@@ -132,8 +132,48 @@ main {
     #built {
         margin: 15px 10px;
 
+        #table1 {
+            display: inline-block;
+            
+            td {
+                width: 50px;
+            }
 
 
+        }
+        #mainTable {
+            display: inline-block;
+            overflow: hidden;
+
+            width: calc(100% - 90px);
+            border: 1px solid black;
+            border-right: 2px solid black;
+
+            #table2 {
+
+                td {
+                    width: 30px;
+
+                    input[type="text"]{
+                        width: calc(100% - 8px);
+
+                        font-size: 15px;
+                        padding: 0px;
+
+
+                        border: none;
+                        background-color: $main;
+                            
+                    }
+                }
+            }
+
+        }
+        #table3 {
+
+
+
+        }
     }
 }
 
@@ -193,3 +233,4 @@ table, td,th {
     border: 1px solid black;
     border-collapse: collapse;
 }
+input:focus {outline: none;}

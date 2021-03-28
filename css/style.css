@@ -132,6 +132,34 @@ main #built {
   margin: 15px 10px;
 }
 
+main #built #table1 {
+  display: inline-block;
+}
+
+main #built #table1 td {
+  width: 50px;
+}
+
+main #built #mainTable {
+  display: inline-block;
+  overflow: hidden;
+  width: calc(100% - 90px);
+  border: 1px solid black;
+  border-right: 2px solid black;
+}
+
+main #built #mainTable #table2 td {
+  width: 30px;
+}
+
+main #built #mainTable #table2 td input[type="text"] {
+  width: calc(100% - 8px);
+  font-size: 15px;
+  padding: 0px;
+  border: none;
+  background-color: #fffff5;
+}
+
 #popUp {
   z-index: 100;
   position: fixed;
@@ -195,5 +223,9 @@ body {
 table, td, th {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+input:focus {
+  outline: none;
 }
 /*# sourceMappingURL=style.css.map */
