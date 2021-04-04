@@ -120,7 +120,7 @@ function buildScoreCard(){
     table3 += `<tr><th class="hidden">Pars</th><th id="pOut"></th><th id="pIn"></th><th id="pTotal"></th></tr>`;
     table3 += `<tr><th class="hidden">Hcp</th><th id="hOut"></th><th id="hIn"></th><th id="hTotal"></th></tr>`;
     for(let p = 0; p < playerCount; p++) {
-        table3 += `<tr><th>${players[p]}</th><th id="${players[p]}Out"></th><th id="${players[p]}In"></th><th id="${players[p]}Total"></th></tr>`;
+        table3 += `<tr><th class="hidden">${players[p]}</th><th id="${players[p]}Out"></th><th id="${players[p]}In"></th><th id="${players[p]}Total"></th></tr>`;
     }
 
 
@@ -132,12 +132,19 @@ function buildScoreCard(){
     //BUILDING IT UP
     $('#built').append(`
         <h1>Game Start</h1>
-        ${table1}
-        <div id="mainTable">
-            ${table2}
+        <div class="fullScore">
+            ${table1}
+            <div id="mainDisplay">
+                <div id="mainTable">
+                    ${table2}
+                </div>
+                <div class="buttonDiv">
+                    <button id="left" onclick="clickLeft()">&#8592;</button>
+                    <button id="right" onclick="clickRight()">&#8594;</button>
+                </div>
+            </div>
+            ${table3}
         </div>
-        ${table3}
-        <hr>
     `);
     totalParsedForHolesText("yardage",  "y");
     totalParsedForHolesText("par",  "p");
@@ -145,4 +152,5 @@ function buildScoreCard(){
     players.forEach((element) => {
         totalParsedForHolesVal(element, element);
     });
+    tableResize();
 }

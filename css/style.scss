@@ -10,6 +10,10 @@
 
 //NAV=================================================================================
 nav {
+    max-width: 880px;
+    margin: auto;
+
+
     padding: 10px 20px;
     background-color: $secondary;
     
@@ -24,6 +28,10 @@ nav {
 
 //MAIN================================================================================
 main {
+    max-width: 850px;
+    margin: auto;
+    margin-top: 8px;
+
     height: calc(100vh - 65px);
     background-color: $main;
 
@@ -31,7 +39,6 @@ main {
     border-radius: 8px;
     box-shadow: 0px 0px 5px #414241;
     
-    margin: 8px;
 
 
 //START-UP============================================================================
@@ -106,6 +113,8 @@ main {
             justify-content: left;
             flex-direction: row-reverse;
             flex-wrap: wrap;
+
+            max-width: 850px;
             position: absolute;
             bottom: 20px;
 
@@ -128,51 +137,69 @@ main {
 
 
 //GOLF-SCORE-CARD=====================================================================
-
     #built {
         margin: 15px 10px;
 
-        #table1 {
-            display: inline-block;
+        .fullScore {
+            display: flex;
+            flex-wrap: wrap;
             
-            td {
-                width: 50px;
-            }
-
-
-        }
-        #mainTable {
-            display: inline-block;
-            overflow: hidden;
-
-            width: calc(100% - 90px);
-            border: 1px solid black;
-            border-right: 2px solid black;
-
-            #table2 {
-
+            #table1 {
+                display: inline-block;
+                margin-right: 10px;
+                
                 td {
-                    width: 30px;
+                    width: 50px;
+                }
+            }
+            #mainDisplay {
+                display: inline-block;
+                max-width: calc(100% - 100px);
 
-                    input[type="text"]{
-                        width: calc(100% - 8px);
+                #mainTable {
+                    display: inline-block;
+                    max-width: 100%;
 
-                        font-size: 15px;
-                        padding: 0px;
+                    overflow-y: scroll;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+
+                    border: 1px solid black;
+                    border-right: 2px solid black;
+
+                    #table2 {
+
+                        td {
+                            width: 30px;
+
+                            input[type="text"]{
+                                width: calc(100% - 8px);
+
+                                font-size: 15px;
+                                padding: 0px;
 
 
-                        border: none;
-                        background-color: $main;
-                            
+                                border: none;
+                                background-color: $main;
+                                    
+                            }
+                        }
+                    }
+                }
+                #mainTable::-webkit-scrollbar { display: none; }
+                .buttonDiv {
+                    display: flex;
+                    justify-content: space-around;
+
+                    button {
+                        width: 40%;
                     }
                 }
             }
+            #table3 {
+                display: inline-block;
 
-        }
-        #table3 {
-
-
-
+            }
         }
     }
 }
