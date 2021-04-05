@@ -13,7 +13,6 @@ nav {
     max-width: 880px;
     margin: auto;
 
-
     padding: 10px 20px;
     background-color: $secondary;
     
@@ -39,6 +38,7 @@ main {
     border-radius: 8px;
     box-shadow: 0px 0px 5px #414241;
     
+    overflow-y: auto;
 
 
 //START-UP============================================================================
@@ -142,6 +142,7 @@ main {
 
         .fullScore {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             
             #table1 {
@@ -178,7 +179,6 @@ main {
                                 font-size: 15px;
                                 padding: 0px;
 
-
                                 border: none;
                                 background-color: $main;
                                     
@@ -201,12 +201,24 @@ main {
 
             }
         }
+        .imgBox {
+            margin: 20px;
+        
+            img {
+                width: calc(100% - 5px);
+                max-height: 50vh;
+
+                border: 4px double $secondary;
+                border-radius: 8px;
+                box-shadow: 0px 0px 5px #414241;
+            }
+        }    
     }
 }
 
 
 //POP-UP==============================================================================
-#popUp {
+.popUp {
     z-index: 100;
     position: fixed;
     top: 0px;
@@ -261,3 +273,5 @@ table, td,th {
     border-collapse: collapse;
 }
 input:focus {outline: none;}
+
+th, td { height: 22px; }

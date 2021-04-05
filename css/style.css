@@ -34,6 +34,7 @@ main {
   border-radius: 8px;
   -webkit-box-shadow: 0px 0px 5px #414241;
           box-shadow: 0px 0px 5px #414241;
+  overflow-y: auto;
 }
 
 main #createGame {
@@ -141,6 +142,9 @@ main #built .fullScore {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -201,19 +205,32 @@ main #built .fullScore #table3 {
   display: inline-block;
 }
 
-#popUp {
+main #built .imgBox {
+  margin: 20px;
+}
+
+main #built .imgBox img {
+  width: calc(100% - 5px);
+  max-height: 50vh;
+  border: 4px double #043827;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 0px 5px #414241;
+          box-shadow: 0px 0px 5px #414241;
+}
+
+.popUp {
   z-index: 100;
   position: fixed;
   top: 0px;
 }
 
-#popUp .popUpBack {
+.popUp .popUpBack {
   width: 100vw;
   height: 100vh;
   background-color: rgba(54, 54, 54, 0.5);
 }
 
-#popUp .popUpMessage {
+.popUp .popUpMessage {
   position: absolute;
   top: 0px;
   display: -webkit-box;
@@ -229,7 +246,7 @@ main #built .fullScore #table3 {
   height: 100vh;
 }
 
-#popUp .popUpMessage .message {
+.popUp .popUpMessage .message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,12 +264,12 @@ main #built .fullScore #table3 {
   border-radius: 8px;
 }
 
-#popUp .popUpMessage .message p {
+.popUp .popUpMessage .message p {
   text-align: center;
   margin: 20px;
 }
 
-#popUp .popUpMessage .message button {
+.popUp .popUpMessage .message button {
   margin: 10px;
   padding: 5px;
 }
@@ -268,5 +285,9 @@ table, td, th {
 
 input:focus {
   outline: none;
+}
+
+th, td {
+  height: 22px;
 }
 /*# sourceMappingURL=style.css.map */

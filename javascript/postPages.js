@@ -50,7 +50,7 @@ function popUp(message) {
     $('nav').css("filter","blur(2px)");
     $('main').css("filter","blur(2px)");
     $('body').append(`
-        <div id="popUp">
+        <div class="popUp">
             <div class="popUpBack"></div>
             <div class="popUpMessage">
                 <div class="message">
@@ -63,7 +63,7 @@ function popUp(message) {
 }
 
 function closePopUp(){
-    $('#popUp').remove();
+    $('.popUp').remove();
     $('nav').css("filter","none");
     $('main').css("filter","none");
 }
@@ -114,7 +114,7 @@ function buildScoreCard(){
     
 
     //TABLE3
-    let table3 = `<table id="table3">`;
+    let table3 = `<table id="table3" table-layout="fixed">`;
     table3 += `<tr><th class="hidden"></th><th>Out</th><th>In</th><th>Total</th></tr>`;
     table3 += `<tr><th class="hidden">Yrds</th><th id="yOut"></th><th id="yIn"></th><th id="yTotal"></th></tr>`;
     table3 += `<tr><th class="hidden">Pars</th><th id="pOut"></th><th id="pIn"></th><th id="pTotal"></th></tr>`;
@@ -131,9 +131,9 @@ function buildScoreCard(){
 
     //BUILDING IT UP
     $('#built').append(`
-        <h1>Game Start</h1>
+        <h1 style="text-align:center;">Game Start</h1>
         <div class="fullScore">
-            ${table1}
+            <div>${table1}</div>
             <div id="mainDisplay">
                 <div id="mainTable">
                     ${table2}
@@ -143,7 +143,13 @@ function buildScoreCard(){
                     <button id="right" onclick="clickRight()">&#8594;</button>
                 </div>
             </div>
-            ${table3}
+            <div>${table3}</div>
+        </div>
+    `);
+    $('#built').append(`
+    <hr>
+        <div class="imgBox">
+            <img src="${mainData.data.thumbnail}" alt="Golf Course Image">
         </div>
     `);
     totalParsedForHolesText("yardage",  "y");

@@ -116,6 +116,25 @@ function totalParsedForHolesVal(item, classKey) {
  
 }
 
+function endMessage(playerIndex, passedInData, dataIndex, scoreIndex) {
+    setTimeout(() => {
+        if (passedInData == playerData[dataIndex].scores[scoreIndex]) {
+            let playerName = players[playerIndex];
+            let playerTotal = Number($(`#${playerName}Total`).text());
+            let parTotal = Number($('#pTotal').text());
+            if (playerTotal <= parTotal) {
+                popUp(`
+                    AMAZING! ${playerName} ended with a score of ${playerTotal}! Congratulations on playing under Par
+                `);
+            }
+            else {
+                popUp(`
+                    ${playerName} ended with a score of ${playerTotal}. Well played.
+                `);
+            }
+        }
+    }, 2000);
+}
 
 
 
@@ -214,7 +233,7 @@ $('#createGame').on("click","#play", () => {
                             par.push(current.par);
                             handicap.push(current.hcp);
                         }
-
+                        
                         $('#createGame').remove();
                         playerDataSetUp();
                         buildScoreCard();
@@ -238,6 +257,8 @@ $('#createGame').on("click","#play", () => {
 
 //GOLF-SCORE-CARD==============================================================
 $('#built').on("keyup", ".data", (event) => {
+    let allFilled = 0;
+
     let currentClasses = (event.currentTarget).className.split(" ");
     let scoreIndex = $(event.currentTarget).parent().attr("value");
     let dataIndex = players.indexOf(currentClasses[0]);
@@ -252,10 +273,14 @@ $('#built').on("keyup", ".data", (event) => {
         let totalAdded = 0;
         $(`.${currentClasses[0]}`).each((index, object) => {
             totalAdded += Number($(object).val());
+            if ($(object).val() != "") { allFilled++; }
         });
 
         totalParsedForHolesVal(currentClasses[0], currentClasses[0]);
 
+        if (holes.length == allFilled) {
+            endMessage(dataIndex, updatedData, dataIndex, scoreIndex)
+        }
     }
 });
 
