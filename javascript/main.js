@@ -1,4 +1,6 @@
+//=============================================================================
 //VARIABLE=====================================================================
+//=============================================================================
 let mainData;
 let courseName;
 
@@ -19,18 +21,40 @@ let localstorage = true;
 
 
 
+
+
+
+//=============================================================================
 //STARTUP======================================================================
+//=============================================================================
+if (localstorage) {
+
+    createGame();
+    setTimeout(() => {
+        for (let item of courses) {
+            $('#courseSelect').append(`
+                <option value="${item.name}">${item.name}</option>
+            `);
+        }
+    },1000);
+}
 
 
 
 
 
+
+
+//=============================================================================
 //FUNCTIONS====================================================================
+//=============================================================================
 function capFirstLetter(word) {
     let capital = word[0].toUpperCase();
     word = word.substring(1,word.length);
     return capital + word;
 }
+
+
 
 function playerDataSetUp(){
     playerData.forEach((index) => {
@@ -39,6 +63,7 @@ function playerDataSetUp(){
         }
     });
 }
+
 
 
 function totalParsedForHolesText(item, classKey) {
@@ -68,13 +93,14 @@ function totalParsedForHolesText(item, classKey) {
 
     fullTotal = Number(inTotal) + Number(outTotal);
     answer.push(outTotal); answer.push(inTotal); answer.push(fullTotal);
-    
 
     $(`#${classKey}Out`).text(answer[0]);
     $(`#${classKey}In`).text(answer[1]);
     $(`#${classKey}Total`).text(answer[2]);
  
 }
+
+
 
 function totalParsedForHolesVal(item, classKey) {
     let answer = [];
@@ -116,20 +142,27 @@ function totalParsedForHolesVal(item, classKey) {
  
 }
 
+
+
 function endMessage(playerIndex, passedInData, dataIndex, scoreIndex) {
     setTimeout(() => {
         if (passedInData == playerData[dataIndex].scores[scoreIndex]) {
             let playerName = players[playerIndex];
-            let playerTotal = Number($(`#${playerName}Total`).text());
             let parTotal = Number($('#pTotal').text());
-            if (playerTotal <= parTotal) {
+            let parStanding = Number($(`#${playerName}Total`).text()) - parTotal;
+            if (parStanding < 0) {
                 popUp(`
-                    AMAZING! ${playerName} ended with a score of ${playerTotal}! Congratulations on playing under Par
+                    AMAZING! ${playerName} ended the game ${parStanding} points under par! Congratulations!
+                `);
+            }
+            else if (parStanding == 0) {
+                popUp(`
+                    Wow! ${playerName} ended the game EXACTLY on par. Cutting it a bit close there aren't ya?
                 `);
             }
             else {
                 popUp(`
-                    ${playerName} ended with a score of ${playerTotal}. Well played.
+                    ${playerName} ended the game ${parStanding} points over par. Well played. But try harder next time. &#128540;
                 `);
             }
         }
@@ -139,10 +172,16 @@ function endMessage(playerIndex, passedInData, dataIndex, scoreIndex) {
 
 
 
+
+
+
+//=============================================================================
 //CREATE-GAME==================================================================
+//=============================================================================
 $('#createGame').on('change',"#courseSelect", () => {
     courseName = $("#courseSelect").val();
 });
+
 
 
 $('#createGame').on('change',"#holeSelect", () => {
@@ -161,10 +200,11 @@ $('#createGame').on('change',"#holeSelect", () => {
 });
 
 
+
 $('#createGame').on('change',"#teeBoxSelect", () => {
     teeBoxIndex = $('#teeBoxSelect option:selected').attr("value");
-
 });
+
 
 
 $('#createGame').on("click","#addPlayer", () => {
@@ -185,6 +225,7 @@ $('#createGame').on("click","#addPlayer", () => {
 });
 
 
+
 $('#createGame').on("click",".playerDelete", (item) => {
      current = item.currentTarget;
     $(current).parent().remove();
@@ -194,6 +235,7 @@ $('#createGame').on("click",".playerDelete", (item) => {
     }
     playerCount--;
 });
+
 
 
 $('#createGame').on("click","#play", () => {
@@ -233,7 +275,7 @@ $('#createGame').on("click","#play", () => {
                             par.push(current.par);
                             handicap.push(current.hcp);
                         }
-                        
+                        console.log(mainData.data.holes);
                         $('#createGame').remove();
                         playerDataSetUp();
                         buildScoreCard();
@@ -255,7 +297,12 @@ $('#createGame').on("click","#play", () => {
 
 
 
+
+
+
+//=============================================================================
 //GOLF-SCORE-CARD==============================================================
+//=============================================================================
 $('#built').on("keyup", ".data", (event) => {
     let allFilled = 0;
 
@@ -283,35 +330,3 @@ $('#built').on("keyup", ".data", (event) => {
         }
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//ASYNC CRINGE=================================================================
-    //For START-UP
-    if (localstorage) {
-
-        createGame();
-        setTimeout(() => {
-            for (let item of courses) {
-                $('#courseSelect').append(`
-                    <option value="${item.name}">${item.name}</option>
-                `);
-            }
-        },1000);
-    }
