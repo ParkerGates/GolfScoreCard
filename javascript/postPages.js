@@ -31,7 +31,7 @@ function createGame(){
         <div class="playerSetUp">
             <label class="block">Enter Players <sup style="color:#043827;font-size: 12px;">(Up to 4)</sup></label>
             <div class="playerName">
-                <input class="playerInput" type="text" placeholder="Player Name...">
+                <input class="playerInput" type="text" placeholder="Player Name..." maxlength="8">
                 <span class="playerDelete">&#10008;</span>
             </div>
             <span id="addPlayer">&#10010;</span>

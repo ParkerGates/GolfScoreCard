@@ -16,7 +16,7 @@ let teeBoxIndex;
 
 let tableRows = 4;
 let playerCount = 1;
-let localstorage = true;
+let spanish = false;
 
 
 
@@ -27,17 +27,14 @@ let localstorage = true;
 //=============================================================================
 //STARTUP======================================================================
 //=============================================================================
-if (localstorage) {
-
-    createGame();
-    setTimeout(() => {
-        for (let item of courses) {
-            $('#courseSelect').append(`
-                <option value="${item.name}">${item.name}</option>
-            `);
-        }
-    },1000);
-}
+createGame();
+setTimeout(() => {
+    for (let item of courses) {
+        $('#courseSelect').append(`
+            <option value="${item.name}">${item.name}</option>
+        `);
+    }
+},1200);
 
 
 
@@ -162,7 +159,7 @@ function endMessage(playerIndex, passedInData, dataIndex, scoreIndex) {
             }
             else {
                 popUp(`
-                    ${playerName} ended the game ${parStanding} points over par. Well played. But try harder next time. &#128540;
+                    ${playerName} ended the game +${parStanding} points over par. Well played. But try harder next time. &#128540;
                 `);
             }
         }
@@ -179,7 +176,14 @@ function endMessage(playerIndex, passedInData, dataIndex, scoreIndex) {
 //CREATE-GAME==================================================================
 //=============================================================================
 $('#createGame').on('change',"#courseSelect", () => {
+    $("#teeBoxSelect").val("");
     courseName = $("#courseSelect").val();
+
+    if (courseName == "Spanish Oaks") {
+        spanish = true;
+        $('#teeBoxSelect option[value="0"]').hide();
+    }
+    else { spanish = false; $('#teeBoxSelect option[value="0"]').show(); }
 });
 
 
@@ -202,7 +206,8 @@ $('#createGame').on('change',"#holeSelect", () => {
 
 
 $('#createGame').on('change',"#teeBoxSelect", () => {
-    teeBoxIndex = $('#teeBoxSelect option:selected').attr("value");
+    if (spanish == true) { teeBoxIndex = $('#teeBoxSelect option:selected').attr("value") - 1; }
+    else { teeBoxIndex = $('#teeBoxSelect option:selected').attr("value"); }
 });
 
 
@@ -212,7 +217,7 @@ $('#createGame').on("click","#addPlayer", () => {
         $('.playerSetUp').children().last().remove();
         $('.playerSetUp').append(`
             <div class="playerName">
-                    <input class="playerInput" type="text" placeholder="Player Name...">
+                    <input class="playerInput" type="text" placeholder="Player Name..." maxlength="8">
                     <span class="playerDelete">&#10008;</span>
             </div>
         `);
